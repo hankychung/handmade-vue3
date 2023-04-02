@@ -33,7 +33,7 @@
 		// 设置快捷导入
 		"baseUrl": ".",
 		"paths": {
-      "@vue/*": ["packages/*/src"]
+      "@/*": ["packages/*"]
     }
 	},
 	// 入口
