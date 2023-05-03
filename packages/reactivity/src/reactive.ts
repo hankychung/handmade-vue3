@@ -10,4 +10,4 @@ const a = { a: 123 }
 
 const obj = reactive(a)
 
-const o2 = reactive('eded')
+const o2 = reactive('ededasdaa')

@@ -1,3 +1,3 @@
 export const fn = () => {
-  console.log('ok')
+  console.log('loaded!')
 }
