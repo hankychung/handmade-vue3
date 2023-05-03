@@ -1,3 +1,1 @@
-import { fn } from '@/reactivity/src'
-
-export { fn }
+export { reactive } from '@/reactivity/src/index'

@@ -9,7 +9,13 @@
 <body>
   <script src="./packages//vue/dist/vue.js"></script>
   <script>
-    Vue.fn()
+    const {reactive} = Vue
+
+    const obj = reactive({
+      name: 'jack'
+    })
+
+    console.log('check res', obj)
   </script>
 </body>
 </html>

@@ -1,3 +1,1 @@
-export const fn = () => {
-  console.log('loaded!')
-}
+export { reactive } from './reactive'
