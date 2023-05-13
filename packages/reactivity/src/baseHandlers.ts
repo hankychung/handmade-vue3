@@ -4,7 +4,7 @@ const mutableHandlers: ProxyHandler<object> = {
   set(target, key, newValue, receiver) {
     trigger(target, key, newValue)
 
-    const isDone = Reflect.set(target, key, receiver)
+    const isDone = Reflect.set(target, key, newValue, receiver)
 
     return isDone
   },
