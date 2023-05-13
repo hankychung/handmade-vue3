@@ -1,1 +1,1 @@
-export { reactive } from '@/reactivity/src/index'
+export { reactive, effect } from '@/reactivity/src/index'
