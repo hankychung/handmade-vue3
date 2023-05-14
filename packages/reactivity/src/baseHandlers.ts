@@ -2,9 +2,9 @@ import { track, trigger } from './effect'
 
 const mutableHandlers: ProxyHandler<object> = {
   set(target, key, newValue, receiver) {
-    trigger(target, key, newValue)
-
     const isDone = Reflect.set(target, key, newValue, receiver)
+
+    trigger(target, key, newValue)
 
     return isDone
   },
