@@ -8,6 +8,7 @@
 </head>
 <body>
   <div id="test"></div>
+  <div id="test2"></div>
 
   <script src="./packages//vue/dist/vue.js"></script>
   <script>
@@ -17,14 +18,12 @@
       name: 'jack'
     })
 
-    console.log('check res', obj.name)
-
-    obj.name = 'mike'
-
-    console.log('after', obj.name)
-
     effect(() => {
       document.querySelector('#test').innerHTML = obj.name
+    })
+
+    effect(() => {
+      document.querySelector('#test2').innerHTML = obj.name
     })
   </script>
 </body>
