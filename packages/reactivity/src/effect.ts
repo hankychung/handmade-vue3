@@ -1,4 +1,6 @@
-type KeyToDep = Map<string | symbol, ReactiveEffect>
+import { Dep, createDep } from './dep'
+
+type KeyToDep = Map<string | symbol, Dep>
 
 const targetDepsMap: WeakMap<object, KeyToDep> = new WeakMap()
 
@@ -24,8 +26,14 @@ function track(target: object, key: string | symbol) {
     targetDepsMap.set(target, (depsMap = new Map()))
   }
 
+  let deps = depsMap.get(key)
+
+  if (!deps) {
+    depsMap.set(key, (deps = createDep()))
+  }
+
   // 记录target中对应的key变化依赖项，以触发对应的effect
-  depsMap.set(key, activeEffect)
+  deps.add(activeEffect)
 }
 
 /**
@@ -35,19 +43,14 @@ function track(target: object, key: string | symbol) {
  * @param newValue
  */
 function trigger(target: object, key: string | symbol, newValue: any) {
-  console.log(
-    'trigger',
-    target,
-    key,
-    newValue,
-    targetDepsMap.get(target)?.get(key)
-  )
+  const effects = targetDepsMap.get(target)?.get(key)
 
-  // TODO: 待验证
-  const effect = targetDepsMap.get(target)?.get(key)
+  console.log('trigger', target, key, newValue, effects)
 
-  if (effect) {
-    effect.trigger()
+  if (effects) {
+    effects.forEach((effect) => {
+      effect.trigger()
+    })
   }
 }
 
@@ -78,4 +81,4 @@ function effect<T = any>(fn: () => T) {
   activeEffect = null
 }
 
-export { track, trigger, effect }
+export { track, trigger, effect, ReactiveEffect }
