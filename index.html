@@ -15,12 +15,16 @@
     const {reactive, effect} = Vue
 
     const obj = reactive({
-      name: 'jack'
+      name: 'jack',
+      age: 12
     })
 
     effect(() => {
-      document.querySelector('#test').innerHTML = obj.name
+      document.querySelector('#test').innerHTML = obj.name + obj.age
     })
+
+    // TEST: 是否跟踪上一个activeEffect - track
+    console.log(obj.c)
 
     effect(() => {
       document.querySelector('#test2').innerHTML = obj.name
