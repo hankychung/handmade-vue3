@@ -49,7 +49,7 @@ function trigger(target: object, key: string | symbol, newValue: any) {
 
   if (effects) {
     effects.forEach((effect) => {
-      effect.trigger()
+      effect.run()
     })
   }
 }
@@ -62,10 +62,6 @@ class ReactiveEffect<T = any> {
     activeEffect = this
 
     return this.fn()
-  }
-
-  trigger() {
-    this.fn()
   }
 }
 

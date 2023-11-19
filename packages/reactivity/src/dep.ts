@@ -8,7 +8,7 @@ const createDep = (effects?: ReactiveEffect[]): Dep => {
 
 const triggerEffects = (dep: Dep) => {
   dep.forEach((effect) => {
-    effect.trigger()
+    effect.run()
   })
 }
 
