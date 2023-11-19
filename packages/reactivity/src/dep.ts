@@ -6,4 +6,10 @@ const createDep = (effects?: ReactiveEffect[]): Dep => {
   return new Set(effects)
 }
 
-export { createDep, Dep }
+const triggerEffects = (dep: Dep) => {
+  dep.forEach((effect) => {
+    effect.trigger()
+  })
+}
+
+export { createDep, Dep, triggerEffects }

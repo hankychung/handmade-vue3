@@ -82,4 +82,4 @@ function effect<T = any>(fn: () => T) {
   activeEffect = null
 }
 
-export { track, trigger, effect, ReactiveEffect }
+export { track, trigger, effect, ReactiveEffect, activeEffect }
