@@ -20,12 +20,14 @@ function createRef(value: any, isShallow?: boolean) {
 
 class RefImpl {
   private _value: any
+  private _rawValue: any
   private dep: Dep = createDep()
 
   public __v_isRef = true
 
   constructor(value: any, private readonly __v_isShallow?: boolean) {
-    this._value = value
+    this._value = this.__v_isShallow ? value : toReactive(value)
+    this._rawValue = value
   }
 
   get value() {
@@ -33,13 +35,15 @@ class RefImpl {
       this.dep.add(activeEffect)
     }
 
-    return this.__v_isShallow ? this._value : toReactive(this._value)
+    return this._value
   }
 
   set value(newValue: any) {
     if (this._value === newValue) return
 
-    this._value = newValue
+    this._value = toReactive(newValue)
+
+    this._rawValue = newValue
 
     triggerEffects(this.dep)
   }
