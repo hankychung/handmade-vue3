@@ -58,6 +58,7 @@ class ReactiveEffect<T = any> {
   constructor(private fn: () => T) {}
 
   run() {
+    // 设置当前的effect, 用于访问到响应式属性时收集依赖
     activeEffect = this
 
     return this.fn()
