@@ -3,7 +3,7 @@ import { activeEffect } from './effect'
 import { toReactive } from './reactive'
 
 const ref = (value: any) => {
-  return createRef(value)
+  return createRef(value, false)
 }
 
 function isRef(v: any): v is RefImpl {
