@@ -20,7 +20,10 @@
         age: 12
       })
 
-      window.text = ref('init text')
+      window.text = ref({
+        name: 'han',
+        age: 18
+      })
 
       effect(() => {
         document.querySelector('#test').innerHTML = obj.name + obj.age
@@ -34,7 +37,7 @@
       })
 
       effect(() => {
-        document.querySelector('#test3').innerHTML = text.value
+        document.querySelector('#test3').innerHTML = text.value.name
       })
     </script>
   </body>
